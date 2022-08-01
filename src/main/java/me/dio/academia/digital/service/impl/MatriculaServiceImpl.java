@@ -27,6 +27,7 @@ public class MatriculaServiceImpl implements IMatriculaService {
 
         matricula.setAluno(aluno);
 
+
         return matriculaRepository.save(matricula);
     }
 
