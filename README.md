@@ -33,6 +33,9 @@
 </ul>
 
 
+<<<<<<< HEAD
+
+=======
 
 
 <h2>🔗 Links Úteis</h2>
@@ -56,7 +59,10 @@ Se possível:
 
 ------------
 
+<<<<<<< HEAD
 Disponibilizado por [Felipe Ribeiro](https://www.linkedin.com/in/felipe-ribeiro-araujo/ "Felipe Ribeiro").
+=======
+
 
 
 
