@@ -50,7 +50,7 @@ public class AlunoServiceImpl  implements IAlunoService {
     public void delete(Long id) {
 
     }
-
+//Pegar todas as avalições
     @Override
     public List<AvaliacaoFisica> getAllAvaliacaoFisica(Long id) {
         Aluno aluno =  repository.findById(id).get();
