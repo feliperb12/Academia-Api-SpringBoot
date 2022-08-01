@@ -59,9 +59,9 @@ Se possível:
 
 ------------
 
-<<<<<<< HEAD
+
 Disponibilizado por [Felipe Ribeiro](https://www.linkedin.com/in/felipe-ribeiro-araujo/ "Felipe Ribeiro").
-=======
+
 
 
 
