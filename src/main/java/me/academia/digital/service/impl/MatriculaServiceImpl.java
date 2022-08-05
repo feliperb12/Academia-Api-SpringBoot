@@ -1,8 +1,10 @@
 package me.academia.digital.service.impl;
 
 import me.academia.digital.entity.Aluno;
+import me.academia.digital.entity.AvaliacaoFisica;
 import me.academia.digital.entity.Matricula;
 import me.academia.digital.repository.AlunoRepository;
+import me.academia.digital.repository.AvaliacaoFisicaRepository;
 import me.academia.digital.repository.MatriculaRepository;
 import me.academia.digital.service.IMatriculaService;
 import me.academia.digital.entity.form.MatriculaForm;
@@ -13,6 +15,10 @@ import java.util.List;
 
 @Service
 public class MatriculaServiceImpl implements IMatriculaService {
+
+    @Autowired
+    private AvaliacaoFisicaRepository avaliacaoFisicaRepository;
+
 
     @Autowired
     private MatriculaRepository matriculaRepository;
@@ -33,6 +39,7 @@ public class MatriculaServiceImpl implements IMatriculaService {
 
     @Override
     public Matricula get(Long id) {
+
         return matriculaRepository.findById(id).get();
     }
 
@@ -49,6 +56,8 @@ public class MatriculaServiceImpl implements IMatriculaService {
 
     @Override
     public void delete(Long id) {
+        get(id);
+        matriculaRepository.deleteById(id);
 
     }
 }

@@ -22,6 +22,11 @@ public class AvaliacaoFisicaController {
 
     @PostMapping
     public AvaliacaoFisica create(@RequestBody AvaliacaoFisicaForm form){
+
         return service.create(form);
+    }
+    @GetMapping("/{id}")
+    public AvaliacaoFisica getById(Long id){
+        return service.get(id);
     }
 }

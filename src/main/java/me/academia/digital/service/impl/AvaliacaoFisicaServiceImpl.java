@@ -1,6 +1,7 @@
 package me.academia.digital.service.impl;
 
 
+import me.academia.digital.exception.AvaliacaoNotFound;
 import me.academia.digital.service.IAvaliacaoFisicaService;
 import me.academia.digital.entity.Aluno;
 import me.academia.digital.entity.AvaliacaoFisica;
@@ -27,8 +28,8 @@ public class AvaliacaoFisicaServiceImpl implements IAvaliacaoFisicaService {
     public AvaliacaoFisica create(AvaliacaoFisicaForm form) {
         AvaliacaoFisica avaliacaoFisica= new AvaliacaoFisica();
         Aluno aluno=alunoRepository.findById(form.getAlunoId()).get();
-
         avaliacaoFisica.setAluno(aluno);
+
         avaliacaoFisica.setPeso(form.getPeso());
         avaliacaoFisica.setAltura(form.getAltura());
 
@@ -37,7 +38,9 @@ public class AvaliacaoFisicaServiceImpl implements IAvaliacaoFisicaService {
 
     @Override
     public AvaliacaoFisica get(Long id) {
-        return null;
+
+        return avaliacaoFisicaRepository.findById(id).orElseThrow(() ->
+                new AvaliacaoNotFound(id));
     }
 
     @Override

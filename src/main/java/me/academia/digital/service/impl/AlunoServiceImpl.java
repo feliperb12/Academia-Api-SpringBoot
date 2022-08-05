@@ -4,8 +4,10 @@ import me.academia.digital.entity.Aluno;
 import me.academia.digital.entity.AvaliacaoFisica;
 import me.academia.digital.entity.form.AlunoForm;
 import me.academia.digital.entity.form.AlunoUpdateForm;
+import me.academia.digital.exception.AlunoNotFoundException;
 import me.academia.digital.repository.AlunoRepository;
 import me.academia.digital.infra.utils.JavaTimeUtils;
+import me.academia.digital.repository.MatriculaRepository;
 import me.academia.digital.service.IAlunoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,9 @@ import java.util.List;
 public class AlunoServiceImpl  implements IAlunoService {
 
 
+
+    @Autowired
+    private MatriculaRepository matriculaRepository;
     @Autowired
     private AlunoRepository repository;
 
@@ -34,7 +39,8 @@ public class AlunoServiceImpl  implements IAlunoService {
 
     @Override
     public Aluno get(Long id) {
-        return null;
+        return repository.findById(id).orElseThrow(() ->
+                new AlunoNotFoundException(id));
     }
 
     @Override
@@ -50,11 +56,19 @@ public class AlunoServiceImpl  implements IAlunoService {
 
     @Override
     public Aluno update(Long id, AlunoUpdateForm formUpdate) {
-        return null;
+        Aluno aluno = get(id);
+        aluno.setNome(formUpdate.getNome());
+        aluno.setBairro(formUpdate.getBairro());
+        aluno.setDataDeNascimento(formUpdate.getDataDeNascimento());
+        repository.save(aluno);
+        return aluno;
     }
 
     @Override
     public void delete(Long id) {
+        get(id);
+        repository.deleteById(id);
+        matriculaRepository.deleteById(id);
 
     }
 //Pegar todas as avalições
@@ -62,5 +76,6 @@ public class AlunoServiceImpl  implements IAlunoService {
     public List<AvaliacaoFisica> getAllAvaliacaoFisica(Long id) {
         Aluno aluno =  repository.findById(id).get();
         return aluno.getAvaliacoes();
+
     }
 }
